@@ -1,0 +1,2 @@
+osmconvert64 skopje.pbf -o=skopje.osm
+osmfilter skopje.osm --keep="amenity=atm" | osmconvert64 - --all-to-nodes --csv="@id @lat @lon amenity int_name name name:en operator addr:city addr:city:en addr:street addr:housenumber addr:postcode opening_hours wheelchair" --csv-headline --csv-separator="," -o="ATMs_SK.csv"
