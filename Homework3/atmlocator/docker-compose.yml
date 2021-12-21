@@ -1,0 +1,17 @@
+version: '3'
+services:
+  database:
+    container_name: atmlocator_database
+    image: postgres
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=atm123
+      - POSTGRES_DB=atmlocator
+    volumes:
+    - postgres-data:/var/lib/postgresql/data
+    ports:
+    - 5454:5432
+
+volumes:
+  postgres-data:
+    driver: local
