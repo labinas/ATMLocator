@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="_master">
+<head>
+    <link rel="stylesheet" href="atmlist.css">
+
+</head>
+<body>
+<div layout:fragment="content">
+
+    <div class="container body-container body-container-m">
+        <div class="body">
+            <h1>ALL ATMs</h1>
+            <div class="tools">
+                <div class="row">
+                    <div class="col-2"></div>
+                    <div class="col-3">
+                        <div class="dropdown">
+                            <button class="btn dropdown-toggle drop-d" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Choose...
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="#">Action</a>
+                                <a class="dropdown-item" href="#">Another action</a>
+                                <a class="dropdown-item" href="#">Something else here</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-5">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="Search ATM..." aria-label="Search" aria-describedby="basic-addon">
+                            <div class="input-group-append">
+                                <span class="input-group-text" id="basic-addon"><i class="fas fa-search"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-2"></div>
+                </div>
+
+
+            </div>
+            <div class="atm-table">
+                <table id="atm-list">
+                    <thead>
+                    <td>Name</td>
+                    <td>Address</td>
+                    <td>Rating</td>
+                    </thead>
+                    <tr>
+                        <td>ATM</td>
+                        <td>ATM address</td>
+                        <td><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></td>
+                    </tr>
+                    <tr>
+                        <td>ATM</td>
+                        <td>ATM address</td>
+                        <td><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></td>
+                    </tr>
+                    <tr>
+                        <td>ATM</td>
+                        <td>ATM address</td>
+                        <td><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></td>
+                    </tr>
+
+                </table>
+            </div>
+            <div class="icon">
+                <p><img src="../smalllogo100.png"></p>
+                <a class="btn btn-atm px-5 py-3 btn-map">Open map</a>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

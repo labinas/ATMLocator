@@ -1,0 +1,59 @@
+.margin-auto{
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.btn-atm{
+    background-color: #01696E;
+    color: white;
+    font-weight: bold;
+}
+.drop-d{
+    border: 1px solid #ced4da;
+}
+
+.body-container{
+    height: 100vh;
+    position: relative;
+}
+.body{
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    transform: translate(-50%, -50%);
+    width: 80%;
+    text-align: center;
+}
+@media all and (max-width: 1000px) {
+    .body-container-m{
+        margin-top: 50px;
+    }
+    .drop-d{
+        font-size: 14px;
+        padding: 7.7px;
+    }
+}
+
+#basic-addon{
+    padding: 0.65rem 0.75rem;
+}
+
+#atm-list{
+    width: 70%;
+    margin: 0 auto;
+}
+.atm-table{
+    margin-bottom: 40px;
+}
+thead{
+    font-weight: 700;
+    font-size: 20px;
+    border-bottom: 1px solid #01696E;
+}
+.fa-star{
+    color: #F1D90D;
+}

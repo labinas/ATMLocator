@@ -1,0 +1,12 @@
+.margin-auto{
+    position: absolute;
+    top: 6%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.btn-atm{
+    background-color: #01696E;
+    color: white;
+    font-weight: bold;
+}
