@@ -1,7 +1,11 @@
 package dians.atmlocator.model;
 
-import javax.persistence.*;
+import lombok.Data;
 
+import javax.persistence.*;
+import java.util.List;
+
+@Data
 @Entity
 @Table(name = "atms")
 public class Atm {
@@ -19,15 +23,18 @@ public class Atm {
     private String addrCity;
     private String addrCityEn;
     private String addrStreet;
-    private String addrHouseNumber;
+    private String addrHousenumber;
     private String addrPostcode;
     private String openingHours;
     private String wheelchair;
+    private Integer rating;
+    @OneToMany(mappedBy = "atm", fetch = FetchType.EAGER)
+    private List<Review> reviews;
 
     public Atm() {
     }
 
-    public Atm(Long openStreetId, double lat, double lon, String amenity, String intName, String name, String nameEn, String operator, String addrCity, String addrCityEn, String addrStreet, String addrHouseNumber, String addrPostcode, String openingHours, String wheelchair) {
+    public Atm(Long openStreetId, double lat, double lon, String amenity, String intName, String name, String nameEn, String operator, String addrCity, String addrCityEn, String addrStreet, String addrHousenumber, String addrPostcode, String openingHours, String wheelchair) {
         this.openStreetId = openStreetId;
         this.lat = lat;
         this.lon = lon;
@@ -39,7 +46,7 @@ public class Atm {
         this.addrCity = addrCity;
         this.addrCityEn = addrCityEn;
         this.addrStreet = addrStreet;
-        this.addrHouseNumber = addrHouseNumber;
+        this.addrHousenumber = addrHousenumber;
         this.addrPostcode = addrPostcode;
         this.openingHours = openingHours;
         this.wheelchair = wheelchair;
@@ -60,7 +67,7 @@ public class Atm {
                 ", addrCity='" + addrCity + '\'' +
                 ", addrCityEn='" + addrCityEn + '\'' +
                 ", addrStreet='" + addrStreet + '\'' +
-                ", addrHouseNumber='" + addrHouseNumber + '\'' +
+                ", addrHousenumber='" + addrHousenumber + '\'' +
                 ", addrPostcode=" + addrPostcode +
                 ", openingHours='" + openingHours + '\'' +
                 ", wheelchair='" + wheelchair + '\'' +

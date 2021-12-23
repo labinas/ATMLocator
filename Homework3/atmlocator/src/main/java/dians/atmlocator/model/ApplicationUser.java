@@ -30,6 +30,8 @@ public class ApplicationUser implements UserDetails {
     boolean accountLocked;
     boolean credentialsExpired;
     boolean enabled;
+    @ManyToMany
+    List<Atm> savedAtms;
 
     public ApplicationUser() {
     }

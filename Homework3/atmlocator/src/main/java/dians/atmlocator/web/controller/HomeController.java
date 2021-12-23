@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping(value = {"/", "/home"})
+@RequestMapping("/")
 public class HomeController {
 
     @GetMapping
@@ -14,4 +14,5 @@ public class HomeController {
         model.addAttribute("bodyContent", "home");
         return "_master";
     }
+
 }

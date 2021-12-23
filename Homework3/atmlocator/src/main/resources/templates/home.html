@@ -2,7 +2,7 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>ATMLocator</title>
-    <link rel="stylesheet" href="home.css">
+    <link rel="stylesheet" th:href="@{/css/home.css}">
 </head>
 <body>
 
@@ -11,7 +11,7 @@
             <h1 class="title-header">Need some help locating the right ATM?</h1>
             <p class="body-content">We have the location of all the ATMs in our beloved city Skopje. Use our interactive map and find the ATM nearest to you!</p>
             <div class="icon">
-                <p><img src="../smalllogo100.png" alt="pin"></p>
+                <p><img th:src="@{/img/smalllogo100.png}" alt="pin"></p>
                 <a class="btn btn-atm px-5 py-3 btn-map">Open map</a>
             </div>
         </div>

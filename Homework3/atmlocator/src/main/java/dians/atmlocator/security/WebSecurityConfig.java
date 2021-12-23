@@ -22,12 +22,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/", "/home", "/resources/**")
-                .permitAll()
+                .antMatchers("/", "/home", "/atm/all").permitAll()
+                .antMatchers( "/resources/**", "/static/**", "/css/**", "/js/**", "/img/**", "/*.css", "/*.js", "/*.png").permitAll()
                 .anyRequest()
                 .authenticated().and()
                 .formLogin();
     }
+
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
