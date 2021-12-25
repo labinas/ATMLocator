@@ -10,3 +10,97 @@
     color: white;
     font-weight: bold;
 }
+
+#modal-map-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: -10000px;
+    right: 0;
+    bottom: 0;
+    height: 100vh;
+    z-index: -1000;
+}
+
+#modal-map-container.show{
+    background-color: rgba(0,0,0,0.3);
+    left: 0;
+    z-index: auto;
+}
+
+#modal-map{
+    position: relative;
+    background-color: whitesmoke;
+    border: 1px solid darkslategray;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    width: 1000px;
+    max-width: 100%;
+    height: 700px;
+    padding: 15px;
+}
+
+#modal-close{
+    position: absolute;
+    right: 30px;
+    font-size: 40px;
+    color: darkred;
+    z-index: 10;
+    cursor: pointer;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+
+#map{
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+}
+
+#open-map-button{
+    cursor: pointer;
+}
+
+.btn.btn-atm:hover,
+.btn.btn-atm:focus,
+.btn.btn-atm:active,
+.btn.btn-atm.active {
+    border-color: #01696E;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(1, 105, 110, 0.6);
+}
+
+.form-select:focus,
+.form-select:active,
+.form-control:focus,
+.form-control:active,
+.form-check-input:focus,
+.form-check-input:active{
+    border-color: #01696E;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(1, 105, 110, 0.6);
+}
+
+.leaflet-popup-content-wrapper, .leaflet-popup-tip{
+    background-color: #353535;
+    color: white;
+    box-shadow: 0 15px 15px rgba(0, 0, 0, 0.7);
+}
+
+.popup-t{
+    font-weight: bold;
+    color: #01696E;
+}
+
+.popup-line, .leaflet-popup-content p{
+    margin: 0!important;
+    text-align: center;
+}
+
+#map-filter{
+    position: absolute;
+    z-index: 10;
+    left: 70px;
+    width: 250px;
+    top: 30px;
+}
+

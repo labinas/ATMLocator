@@ -6,6 +6,7 @@ import dians.atmlocator.service.AtmService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AtmServiceImpl implements AtmService {
@@ -19,5 +20,15 @@ public class AtmServiceImpl implements AtmService {
     @Override
     public List<Atm> getAllAtms() {
         return atmRepository.findAll();
+    }
+
+    @Override
+    public Optional<Atm> findById(Long id) {
+        return atmRepository.findById(id);
+    }
+
+    @Override
+    public List<Atm> findAtmsByBankName(String bank) {
+        return atmRepository.findAtmsByNameEnContaining(bank);
     }
 }

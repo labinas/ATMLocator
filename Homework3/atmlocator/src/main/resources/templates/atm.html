@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>ATMLocator</title>
+    <link rel="stylesheet" th:href="@{/css/atm.css}">
+</head>
+<body>
+<div class="container body-container">
+    <div class="body">
+        <div class="back-icon"><i class="fas fa-arrow-left"></i></div>
+        <h2 class="atm-name">ATM NAME</h2>
+        <div class="info">
+            <p class="atm-addr"><b>Address:</b> ATM address 1/1</p>
+            <p class="atm-bank-num"><b>Bank contact:</b> 022345543</p>
+            <p class="additional-info">Open 24/7, wheelchair accessible</p>
+        </div>
+        <div class="map"></div>
+        <div class="atm-buttons">
+            <div class="row">
+                <div class="col-6">
+                    <a class="btn mx-1 btn-save" href="#">SAVE ATM <i class="far fa-money-bill-alt"></i></a>
+                    <a class="btn mx-1 btn-atm" href="#">Open reviews</a>
+                </div>
+
+                <div class="col-6 atm-rating">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

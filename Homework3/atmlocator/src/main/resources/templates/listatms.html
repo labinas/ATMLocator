@@ -5,8 +5,6 @@
     <title>ATMLocator</title>
 </head>
 <body>
-
-
     <div class="container body-container body-container-m">
         <div class="body">
             <h1 th:text="${atmTitle}"></h1>
@@ -112,7 +110,7 @@
             </div>
             <div class="icon">
                 <p><img th:src="@{/img/smalllogo100.png}"></p>
-                <a class="btn btn-atm px-5 py-3 btn-map">Open map</a>
+                <a id="open-map-button" class="btn btn-atm px-5 py-3 btn-map">Open map</a>
             </div>
         </div>
     </div>
