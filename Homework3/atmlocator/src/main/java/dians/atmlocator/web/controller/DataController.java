@@ -1,8 +1,13 @@
 package dians.atmlocator.web.controller;
 
 import dians.atmlocator.model.Atm;
+import dians.atmlocator.model.Review;
+import dians.atmlocator.service.ApplicationUserService;
 import dians.atmlocator.service.AtmService;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,9 +17,11 @@ import java.util.List;
 public class DataController {
 
     private final AtmService atmService;
+    private final ApplicationUserService applicationUserService;
 
-    public DataController(AtmService atmService) {
+    public DataController(AtmService atmService, ApplicationUserService applicationUserService) {
         this.atmService = atmService;
+        this.applicationUserService = applicationUserService;
     }
 
     @GetMapping("/atms")
@@ -31,5 +38,8 @@ public class DataController {
                 .orElseGet(() -> ResponseEntity.badRequest().build());
     }
 
-
+    @GetMapping("/test/reviews/{id}")
+    public ResponseEntity<List<Review>> getReviews(@PathVariable Long id){
+        return ResponseEntity.ok().body(atmService.getReviews(id));
+    }
 }

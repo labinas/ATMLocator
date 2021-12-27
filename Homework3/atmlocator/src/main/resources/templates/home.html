@@ -17,6 +17,30 @@
         </div>
     </div>
 
+    <div id="modal-map-container">
+        <div id="modal-map">
+            <select id="map-filter" class="form-select" aria-label="Filter by bank">
+                <option value="all" selected>Сите</option>
+                <option value="Komercijalna">Комерцијална Банка</option>
+                <option value="Bitola">Комерцијална Банка - Битола</option>
+                <option value="NLB">НЛБ Тутунска Банка</option>
+                <option value="Ohridska">Охридска Банка</option>
+                <option value="ProCredit">Прокредит Банка</option>
+                <option value="Silk">Силк Роуд Банка</option>
+                <option value="Stopanska">Стопанска Банка</option>
+                <option value="Uni">Уни Банка</option>
+                <option value="Halk">Халкбанк</option>
+                <option value="Sparkasse">Шпаркасе Банка</option>
+            </select>
+            <div id="modal-close">
+                <i class="fas fa-window-close"></i>
+            </div>
+            <div id="map">
+
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" th:src="@{/js/map.js}"></script>
 
 </body>
 </html>

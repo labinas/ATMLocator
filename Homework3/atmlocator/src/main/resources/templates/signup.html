@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <meta charset="UTF-8">
     <title>ATMLocator</title>
@@ -9,25 +9,28 @@
 <div class="container body-container">
     <div class="body">
         <h1 class="title-header">Sign up and start locating!</h1>
-        <form class="signup">
+        <div th:if="${registered == true}" class="success-message">Successfully created account, sign in <a th:href="@{/login}">here</a>!</div>
+        <form class="signup" th:method="post" th:action="@{/register}" th:object="${userDto}">
             <div class="form-group">
                 <label for="email">E-mail</label>
-                <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter e-mail">
+                <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter e-mail" th:field="*{email}" th:errorclass="invalid">
+                <small th:if="${#fields.hasErrors('email')}" id="emailHelp" th:errors="*{email}" class="form-text invalid-error"></small>
             </div>
             <div class="form-group">
                 <label for="username">Username</label>
-                <input type="text" class="form-control" id="username" aria-describedby="userHelp" placeholder="Enter username">
-                <small id="userHelp" class="form-text text-muted"></small>
+                <input type="text" class="form-control" id="username" aria-describedby="userHelp" placeholder="Enter username" th:field="*{username}" th:errorclass="invalid">
+                <small th:if="${#fields.hasErrors('username')}" id="userHelp" th:errors="*{username}" class="form-text invalid-error"></small>
             </div>
             <div class="row">
                 <div class="form-group col-md-6">
                     <label for="password">Password</label>
-                    <input type="password" class="form-control" id="password" aria-describedby="passwordHelp" placeholder="Enter password">
-                    <small id="passwordHelp" class="form-text text-muted">The password should contain at least 6 characters, one number and one capital letter</small>
+                    <input type="password" class="form-control" id="password" aria-describedby="passwordHelp" placeholder="Enter password" th:field="*{password}" th:errorclass="invalid">
+                    <small th:if="${#fields.hasErrors('password')}" id="passwordHelp" th:errors="*{password}" class="form-text invalid-error"></small>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="password-confirm">Confirm password</label>
-                    <input type="password" class="form-control" id="password-confirm" aria-describedby="passwordConfirmHelp" placeholder="Confirm password">
+                    <input type="password" class="form-control" id="password-confirm" aria-describedby="passwordConfirmHelp" placeholder="Confirm password" th:field="*{matchingPassword}" th:errorclass="invalid">
+                    <small th:if="${#fields.hasErrors('matchingPassword')}" id="passwordConfirmHelp" th:errors="*{matchingPassword}" class="form-text invalid-error"></small>
                 </div>
             </div>
 

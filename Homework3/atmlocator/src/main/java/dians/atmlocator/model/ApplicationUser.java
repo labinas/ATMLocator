@@ -1,5 +1,6 @@
 package dians.atmlocator.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import dians.atmlocator.model.enumerations.UserRole;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
@@ -24,7 +25,7 @@ public class ApplicationUser implements UserDetails {
     String email;
     @Enumerated(EnumType.STRING)
     UserRole role;
-    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     List<Review> reviews;
     boolean accountExpired;
     boolean accountLocked;
@@ -36,16 +37,17 @@ public class ApplicationUser implements UserDetails {
     public ApplicationUser() {
     }
 
-    public ApplicationUser(String username, String password, String email, UserRole role, List<Review> reviews, boolean accountExpired, boolean accountLocked, boolean credentialsExpired, boolean enabled) {
+    public ApplicationUser(String username, String password, String email) {
         this.username = username;
         this.password = password;
         this.email = email;
-        this.role = role;
+        this.role = UserRole.USER;
         this.reviews = new LinkedList<>();
-        this.accountExpired = accountExpired;
-        this.accountLocked = accountLocked;
-        this.credentialsExpired = credentialsExpired;
-        this.enabled = enabled;
+        this.accountExpired = false;
+        this.accountLocked = false;
+        this.credentialsExpired = false;
+        this.enabled = true;
+        this.savedAtms = new LinkedList<>();
     }
 
     @Override
@@ -83,5 +85,10 @@ public class ApplicationUser implements UserDetails {
     @Override
     public boolean isEnabled() {
         return enabled;
+    }
+
+    @JsonManagedReference
+    public List<Review> getReviews() {
+        return reviews;
     }
 }

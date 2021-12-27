@@ -1,5 +1,6 @@
 package dians.atmlocator.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -28,4 +29,19 @@ public class Review {
         this.rating = rating;
         this.atm = atm;
     }
+
+    public String getReviewerUsername(){
+        return user.getUsername();
+    }
+
+    @JsonBackReference
+    public ApplicationUser getUser() {
+        return user;
+    }
+
+    @JsonBackReference
+    public Atm getAtm() {
+        return atm;
+    }
+
 }

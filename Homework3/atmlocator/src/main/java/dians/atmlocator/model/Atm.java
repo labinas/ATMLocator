@@ -1,5 +1,6 @@
 package dians.atmlocator.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -72,5 +73,10 @@ public class Atm {
                 ", openingHours='" + openingHours + '\'' +
                 ", wheelchair='" + wheelchair + '\'' +
                 '}';
+    }
+
+    @JsonManagedReference
+    public List<Review> getReviews() {
+        return reviews;
     }
 }

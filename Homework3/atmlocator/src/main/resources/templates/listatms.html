@@ -12,23 +12,18 @@
                 <div class="row">
                     <div class="col-2"></div>
                     <div class="col-3">
-                        <div class="dropdown">
-                            <button class="btn dropdown-toggle drop-d" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Sort by...
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" href="#">Alphabetic order</a>
-                                <a class="dropdown-item" href="#">Rating</a>
-                                <a class="dropdown-item" href="#">Default</a>
-                            </div>
-                        </div>
+                        <select id="select" class="form-select" aria-label="select">
+                            <option value="default">Default</option>
+                            <option value="alphabetic">Alphabetic order</option>
+                            <option value="rating">Rating</option>
+                        </select>
                     </div>
                     <div class="col-5">
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="Search ATM..." aria-label="Search" aria-describedby="basic-addon">
-                            <div class="input-group-append">
+                            <input type="text" id="search-bar" class="form-control" placeholder="Search ATM..." aria-label="Search" aria-describedby="basic-addon">
+                            <!--<div class="input-group-append">
                                 <span class="input-group-text" id="basic-addon"><i class="fas fa-search"></i></span>
-                            </div>
+                            </div>-->
                         </div>
                     </div>
                     <div class="col-2"></div>
@@ -39,57 +34,61 @@
 
             <div class="atm-list">
                 <table id="atm-table">
-                <thead>
-                <td>Name</td>
-                <td>Address</td>
-                <td>Rating</td>
-                </thead>
-                <tr th:each="atm : ${atmList}" class="atm">
-                    <td class="atmEntry" th:text="${atm.getName().length() > 0} ? ${atm.getName()} : 'ATM'"></td>
-                    <td class="atmEntry atm-addr" th:text="${atm.getAddrStreet().length() > 0} ? ${atm.getAddrStreet()} + ' ' + ${atm.getAddrHousenumber()} : 'No known address'"></td>
-                    <td class="atmEntry" th:if="${atm.getRating() == null}">
-                        <i class="far fa-star"></i>
-                        <i class="far fa-star"></i>
-                        <i class="far fa-star"></i>
-                        <i class="far fa-star"></i>
-                        <i class="far fa-star"></i>
-                    </td>
-                    <td class="atmEntry" th:if="${atm.getRating() == 1}">
-                        <i class="fas fa-star"></i>
-                        <i class="far fa-star"></i>
-                        <i class="far fa-star"></i>
-                        <i class="far fa-star"></i>
-                        <i class="far fa-star"></i>
-                    </td>
-                    <td class="atmEntry" th:if="${atm.getRating() == 2}">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="far fa-star"></i>
-                        <i class="far fa-star"></i>
-                        <i class="far fa-star"></i>
-                    </td>
-                    <td class="atmEntry" th:if="${atm.getRating() == 3}">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="far fa-star"></i>
-                        <i class="far fa-star"></i>
-                    </td>
-                    <td class="atmEntry" th:if="${atm.getRating() == 4}">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="far fa-star"></i>
-                    </td>
-                    <td class="atmEntry" th:if="${atm.getRating() == 5}">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </td>
-                </tr>
+                    <thead>
+                        <td>Name</td>
+                        <td>Address</td>
+                        <td>Rating</td>
+                    </thead>
+                    <tbody>
+                    <tr th:each="atm : ${atmList}" class="atm" th:attr="data-id=${atm.getId()}, data-rating=${atm.getRating() == null} ? '0' : ${atm.getRating()}, data-name=${atm.getName().length() > 0} ? ${atm.getName()} : 'АТМ'">
+                        <td class="atmEntry"><a class="atmEntryName" th:href="@{/atm/{id}(id = ${atm.getId()})}" th:text="${atm.getName().length() > 0} ? ${atm.getName()} : 'АТМ'"></a> </td>
+                        <td class="atmEntry"><a class="atmEntryAddr" th:href="@{/atm/{id}(id = ${atm.getId()})}" th:text="${atm.getAddrStreet().length() > 0} ? ${atm.getAddrStreet()} + ' ' + ${atm.getAddrHousenumber()} : 'No known address'"></a> </td>
+                        <td class="atmEntry" th:if="${atm.getRating() == null || atm.getRating() == 0}">
+                            <i class="far fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <i class="far fa-star"></i>
+                        </td>
+                        <td class="atmEntry" th:if="${atm.getRating() == 1}">
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <i class="far fa-star"></i>
+                        </td>
+                        <td class="atmEntry" th:if="${atm.getRating() == 2}">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <i class="far fa-star"></i>
+                        </td>
+                        <td class="atmEntry" th:if="${atm.getRating() == 3}">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <i class="far fa-star"></i>
+                        </td>
+                        <td class="atmEntry" th:if="${atm.getRating() == 4}">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                        </td>
+                        <td class="atmEntry" th:if="${atm.getRating() == 5}">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </td>
+                    </tr>
+                    </tbody>
+
+
                 <!--<tr>
                     <td>ATM</td>
                     <td>ATM address</td>
@@ -115,7 +114,30 @@
         </div>
     </div>
 
+    <div id="modal-map-container">
+        <div id="modal-map">
+            <select id="map-filter" class="form-select" aria-label="Filter by bank">
+                <option value="all" selected>Сите</option>
+                <option value="Komercijalna">Комерцијална Банка</option>
+                <option value="Bitola">Комерцијална Банка - Битола</option>
+                <option value="NLB">НЛБ Тутунска Банка</option>
+                <option value="Ohridska">Охридска Банка</option>
+                <option value="ProCredit">Прокредит Банка</option>
+                <option value="Silk">Силк Роуд Банка</option>
+                <option value="Stopanska">Стопанска Банка</option>
+                <option value="Uni">Уни Банка</option>
+                <option value="Halk">Халкбанк</option>
+                <option value="Sparkasse">Шпаркасе Банка</option>
+            </select>
+            <div id="modal-close">
+                <i class="fas fa-window-close"></i>
+            </div>
+            <div id="map">
 
-
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" th:src="@{/js/map.js}"></script>
+    <script type="text/javascript" th:src="@{/js/atmlist.js}"></script>
 </body>
 </html>

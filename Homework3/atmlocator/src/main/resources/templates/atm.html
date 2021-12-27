@@ -8,25 +8,175 @@
 <body>
 <div class="container body-container">
     <div class="body">
-        <div class="back-icon"><i class="fas fa-arrow-left"></i></div>
-        <h2 class="atm-name">ATM NAME</h2>
+        <a class="back-icon" href="javascript:window.history.back();"><i class="fas fa-arrow-left"></i></a>
+        <h2 class="atm-name" th:text="${atm.getName()}"></h2>
         <div class="info">
-            <p class="atm-addr"><b>Address:</b> ATM address 1/1</p>
-            <p class="atm-bank-num"><b>Bank contact:</b> 022345543</p>
-            <p class="additional-info">Open 24/7, wheelchair accessible</p>
+            <p th:utext="'&lt;strong&gt;Address: &lt;/strong&gt;' + ${atm.getAddrStreet()} + ' ' + ${atm.getAddrHousenumber()}" class="atm-addr"></p>
+            <p th:if="${bankInfo != null}" class="atm-bank-num"><strong>Bank contact:</strong> <a class="bank-num" th:text="${bankInfo.getContact()}" th:href="'tel:' + ${bankInfo.getNumber()}"></a></p>
+            <p th:text="'Open ' + ${atm.getOpeningHours}" class="additional-info"></p>
         </div>
-        <div class="map"></div>
+        <div id="map">
+
+        </div>
+        <script type="text/javascript" th:src="@{/js/atm.js}"></script>
         <div class="atm-buttons">
             <div class="row">
-                <div class="col-6">
-                    <a class="btn mx-1 btn-save" href="#">SAVE ATM <i class="far fa-money-bill-alt"></i></a>
-                    <a class="btn mx-1 btn-atm" href="#">Open reviews</a>
+                <div class="col-8">
+                    <a th:if="${#authorization.expression('isAuthenticated()') && saved == false}" th:href="@{/atm/add/{id}(id = ${atm.getId()})}" class="btn mx-1 btn-save">SAVE ATM <i class="far fa-money-bill-alt"></i></a>
+                    <a th:if="${#authorization.expression('isAuthenticated()') && saved == true}" th:href="@{/atm/remove/{id}(id = ${atm.getId()})}" class="btn mx-1 btn-remove">REMOVE ATM <i class="far fa-money-bill-alt"></i></a>
+                    <a id="open" class="btn mx-1 btn-atm">Open reviews</a>
+                    <a id="leave-review" th:if="${#authorization.expression('isAuthenticated()')}" class="btn mx-1 btn-atm">Leave review</a>
                 </div>
 
-                <div class="col-6 atm-rating">
-                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i>
+                <div class="col-4 atm-rating">
+                    <div class="atmEntry" th:if="${atm.getRating() == null || atm.getRating() == 0}">
+                        <i class="far fa-star"></i>
+                        <i class="far fa-star"></i>
+                        <i class="far fa-star"></i>
+                        <i class="far fa-star"></i>
+                        <i class="far fa-star"></i>
+                    </div>
+                    <div class="atmEntry" th:if="${atm.getRating() == 1}">
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                        <i class="far fa-star"></i>
+                        <i class="far fa-star"></i>
+                        <i class="far fa-star"></i>
+                    </div>
+                    <div class="atmEntry" th:if="${atm.getRating() == 2}">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                        <i class="far fa-star"></i>
+                        <i class="far fa-star"></i>
+                    </div>
+                    <div class="atmEntry" th:if="${atm.getRating() == 3}">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                        <i class="far fa-star"></i>
+                    </div>
+                    <div class="atmEntry" th:if="${atm.getRating() == 4}">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                    </div>
+                    <div class="atmEntry" th:if="${atm.getRating() == 5}">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
                 </div>
             </div>
+        </div>
+
+    </div>
+</div>
+
+<div id="modal-container">
+    <div id="modal-body">
+        <div id="modal-close">
+            <i class="fas fa-window-close"></i>
+        </div>
+        <div id="review-list">
+            <p id="no-reviews" th:if="${reviews.size() == 0}">There are no reviews for this ATM.</p>
+            <ul th:if="${reviews != null}">
+                <li th:each="review : ${reviews}">
+                    <div class="review-info">
+                        <p class="r-name" th:text="'User: ' + ${review.getReviewerUsername()}"></p>
+                        <p class="r-text" th:text="${review.getReviewText()}"></p>
+                        <div class="r-rating">
+                            <div th:if="${review.getRating() == null}">
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                            <div th:if="${review.getRating() == 1}">
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                            <div th:if="${review.getRating() == 2}">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                            <div th:if="${review.getRating() == 3}">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                            <div th:if="${review.getRating() == 4}">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                            <div th:if="${review.getRating() == 5}">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div id="review-form">
+            <form th:method="post" th:action="@{/atm/review/submit/{id}(id=${atm.getId()})}">
+                <label for="comment">Comment: </label>
+                <textarea class="form-control" name="text" rows="5" id="comment"></textarea>
+                <label for="rating">Rating: </label>
+                <div id="rating">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="rating" id="rating1" value="1">
+                        <label class="form-check-label" for="rating1">
+                            1
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="rating" id="rating2" value="2">
+                        <label class="form-check-label" for="rating2">
+                            2
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="rating" id="rating3" value="3">
+                        <label class="form-check-label" for="rating3">
+                            3
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="rating" id="rating4" value="4">
+                        <label class="form-check-label" for="rating4">
+                            4
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="rating" id="rating5" value="5">
+                        <label class="form-check-label" for="rating5">
+                            5
+                        </label>
+                    </div>
+                </div>
+                <button id="submit-button" type="submit" class="btn btn-primary btn-atm">Submit review</button>
+            </form>
         </div>
     </div>
 </div>

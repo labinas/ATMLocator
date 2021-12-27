@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
 <head>
     <meta charset="UTF-8">
     <title>ATMLocator</title>
@@ -19,20 +20,26 @@
     <link rel="stylesheet" type="text/css" th:href="@{/css/master.css}">
 
 </head>
-<body><a class=" margin-auto" href="#"><img th:src="@{/img/atmlocator250.PNG}" alt="logo"></a>
+<body>
 <nav class="navbar navbar-expand-lg navbar-light">
-
+    <a class="home-logo" href="/"><img th:src="@{/img/atmlocator250.PNG}" alt="logo"></a>
     <div class="container-fluid flex-row-reverse">
 
         <div class="d-flex flex-row-reverse">
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+            <div class="navbar-header">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <div class="navbar-nav py-4">
-                    <a class=" btn mx-1 btn-atm" aria-current="page" href="#">Sign in</a>
-                    <a class="btn mx-1 btn-atm" href="#">Sign up</a>
-                    <a class=" btn mx-1 btn-atm" href="#">ALL ATMs <i class="far fa-money-bill-alt"></i> </a>
+                <div class="nav navbar-nav py-4">
+                    <span th:if="${#authorization.expression('isAuthenticated()')}" th:utext="'Welcome, &lt;strong&gt;' + ${#authentication.getName()} + '&lt;/strong&gt!'" class="user-info"></span>
+                    <a th:if="${#authorization.expression('isAuthenticated()') == false}" class=" btn mx-1 btn-atm" aria-current="page" th:href="@{/login}">Sign in</a>
+                    <a th:if="${#authorization.expression('isAuthenticated()') == false}" class="btn mx-1 btn-atm" th:href="@{/register}">Sign up</a>
+                    <a th:if="${#authorization.expression('isAuthenticated()')}" class=" btn mx-1 btn-atm" th:href="@{/atm/myatms}">MY ATMs <i class="far fa-money-bill-alt"></i> </a>
+                    <a class=" btn mx-1 btn-atm" th:href="@{/atm/all}">ALL ATMs <i class="far fa-money-bill-alt"></i> </a>
+                    <a th:if="${#authorization.expression('isAuthenticated()')}" class=" btn mx-1 btn-atm" aria-current="page" th:href="@{/logout}">Sign out</a>
                 </div>
 
             </div>
@@ -45,29 +52,6 @@
 <section th:include="${bodyContent}">
 
 </section>
-<div id="modal-map-container">
-    <div id="modal-map">
-        <select id="map-filter" class="form-select" aria-label="Filter by bank">
-            <option value="all" selected>Сите</option>
-            <option value="Komercijalna">Комерцијална Банка</option>
-            <option value="Bitola">Комерцијална Банка - Битола</option>
-            <option value="NLB">НЛБ Тутунска Банка</option>
-            <option value="Ohridska">Охридска Банка</option>
-            <option value="ProCredit">Прокредит Банка</option>
-            <option value="Silk">Силк Роуд Банка</option>
-            <option value="Stopanska">Стопанска Банка</option>
-            <option value="Uni">Уни Банка</option>
-            <option value="Halk">Халкбанк</option>
-            <option value="Sparkasse">Шпаркасе Банка</option>
-        </select>
-        <div id="modal-close">
-            <i class="fas fa-window-close"></i>
-        </div>
-        <div id="map">
 
-        </div>
-    </div>
-</div>
-<script type="text/javascript" th:src="@{/js/map.js}"></script>
 </body>
 </html>

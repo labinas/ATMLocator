@@ -13,12 +13,7 @@
     position: relative;
 }
 .body{
-    position: absolute;
-    top: 42%;
-    left: 50%;
-    -ms-transform: translateY(-50%);
-    transform: translateY(-50%);
-    transform: translate(-50%, -50%);
+    margin: 20px auto;
     width: 80%;
     text-align: center;
 }
@@ -64,4 +59,9 @@ thead{
 .fa-star{
     color: #F1D90D;
     text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+
+.atmEntryName, .atmEntryName:hover, .atmEntryAddr, .atmEntryAddr:hover{
+    color: #353535;
+    text-decoration: none;
 }
