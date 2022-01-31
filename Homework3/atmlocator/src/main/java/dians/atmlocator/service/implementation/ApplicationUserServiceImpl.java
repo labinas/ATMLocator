@@ -18,11 +18,9 @@ import java.util.Optional;
 @Service
 public class ApplicationUserServiceImpl implements ApplicationUserService {
     private final ApplicationUserRepository userRepository;
-    private final ReviewService reviewService;
 
-    public ApplicationUserServiceImpl(ApplicationUserRepository userRepository, ReviewService reviewService) {
+    public ApplicationUserServiceImpl(ApplicationUserRepository userRepository) {
         this.userRepository = userRepository;
-        this.reviewService = reviewService;
     }
 
     @Override

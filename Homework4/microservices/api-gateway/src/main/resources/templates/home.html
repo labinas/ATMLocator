@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>ATMLocator</title>
+    <link rel="stylesheet" th:href="@{/css/home.css}">
+</head>
+<body>
+
+    <div class="container body-container body-container-m">
+        <div class="body">
+            <h1 class="title-header">Need some help locating the right ATM?</h1>
+            <p class="body-content">We have the location of all the ATMs in our beloved city Skopje. Use our interactive map and find the ATM nearest to you!</p>
+            <div class="icon">
+                <p><img th:src="@{/img/smalllogo100.png}" alt="pin"></p>
+                <a id="open-map-button" class="btn btn-atm px-5 py-3 btn-map">Open map</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-map-container">
+        <div id="modal-map">
+            <select id="map-filter" class="form-select" aria-label="Filter by bank">
+                <option value="all" selected>Сите</option>
+                <option value="Komercijalna">Комерцијална Банка</option>
+                <option value="Bitola">Комерцијална Банка - Битола</option>
+                <option value="NLB">НЛБ Тутунска Банка</option>
+                <option value="Ohridska">Охридска Банка</option>
+                <option value="ProCredit">Прокредит Банка</option>
+                <option value="Silk">Силк Роуд Банка</option>
+                <option value="Stopanska">Стопанска Банка</option>
+                <option value="Uni">Уни Банка</option>
+                <option value="Halk">Халкбанк</option>
+                <option value="Sparkasse">Шпаркасе Банка</option>
+            </select>
+            <div id="modal-close">
+                <i class="fas fa-window-close"></i>
+            </div>
+            <div id="map">
+
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" th:src="@{/js/map.js}"></script>
+
+</body>
+</html>

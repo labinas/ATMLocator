@@ -1,0 +1,12 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: auth-service
+
+jwt:
+  secret: eAgHvegCMtsCBuBFaSCMcHPaslQ28Pp1fbvrea8fUkpsYYpg34g6A1SYEm9A63nU82o6PfSFZ01Xm44w
+  expiration: 86400
+  accessCookieName: accessCookie
+  refreshCookieName: refreshCookie

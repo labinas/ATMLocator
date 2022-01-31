@@ -1,0 +1,45 @@
+version: '3'
+services:
+  user-database:
+    container_name: atmlocator_userdb
+    image: postgres
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=atm123
+      - POSTGRES_DB=userdb
+    volumes:
+      - postgres-data-user:/var/lib/postgresql/data
+    ports:
+      - 5454:5432
+  bank-database:
+    container_name: atmlocator_bankdb
+    image: postgres
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=atm123
+      - POSTGRES_DB=bankdb
+    volumes:
+      - postgres-data-bank:/var/lib/postgresql/data
+    ports:
+      - 5455:5432
+  review-database:
+    container_name: atmlocator_reviewdb
+    image: postgres
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=atm123
+      - POSTGRES_DB=reviewdb
+    volumes:
+      - postgres-data-review:/var/lib/postgresql/data
+    ports:
+      - 5456:5432
+
+
+
+volumes:
+  postgres-data-user:
+    driver: local
+  postgres-data-review:
+    driver: local
+  postgres-data-bank:
+    driver: local

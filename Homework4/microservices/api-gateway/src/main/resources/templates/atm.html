@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>ATMLocator</title>
+    <link rel="stylesheet" th:href="@{/css/atm.css}">
+    <script type="text/javascript" th:src="@{/js/atm.js}"></script>
+</head>
+<body>
+<div class="container body-container">
+    <div class="body">
+        <a class="back-icon" href="javascript:window.history.back();"><i class="fas fa-arrow-left"></i></a>
+        <h2 id="atmName" class="atm-name" ></h2>
+        <div class="info">
+            <p class="atm-addr"></p>
+            <p class="atm-bank-num"><strong>Bank contact:</strong> <a class="bank-num"></a></p>
+            <p class="additional-info"></p>
+        </div>
+        <div id="map">
+
+        </div>
+
+        <div class="atm-buttons">
+            <div class="row">
+                <div class="col-8">
+                    <a class="btn mx-1 btn-save none">SAVE ATM <i class="far fa-money-bill-alt"></i></a>
+                    <a class="btn mx-1 btn-remove none">REMOVE ATM <i class="far fa-money-bill-alt"></i></a>
+                    <a id="open" class="btn mx-1 btn-atm">Open reviews</a>
+                    <a id="leave-review" class="btn mx-1 btn-atm none">Leave review</a>
+                </div>
+
+                <div class="col-4 atm-rating">
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div id="modal-container">
+    <div id="modal-body">
+        <div id="modal-close">
+            <i class="fas fa-window-close"></i>
+        </div>
+        <div id="review-list">
+            <p id="no-reviews">There are no reviews for this ATM.</p>
+            <ul id="r-list">
+
+            </ul>
+        </div>
+        <div id="review-form">
+            <form th:method="post" th:action="@{/atm/review/submit/{id}(id=${atm.getId()})}">
+                <label for="comment">Comment: </label>
+                <textarea class="form-control" name="text" rows="5" id="comment"></textarea>
+                <label for="rating">Rating: </label>
+                <div id="rating">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="rating" id="rating1" value="1">
+                        <label class="form-check-label" for="rating1">
+                            1
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="rating" id="rating2" value="2">
+                        <label class="form-check-label" for="rating2">
+                            2
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="rating" id="rating3" value="3">
+                        <label class="form-check-label" for="rating3">
+                            3
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="rating" id="rating4" value="4">
+                        <label class="form-check-label" for="rating4">
+                            4
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="rating" id="rating5" value="5">
+                        <label class="form-check-label" for="rating5">
+                            5
+                        </label>
+                    </div>
+                </div>
+                <button id="submit-button" type="submit" class="btn btn-primary btn-atm">Submit review</button>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

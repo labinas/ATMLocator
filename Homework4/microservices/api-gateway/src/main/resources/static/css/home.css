@@ -1,0 +1,35 @@
+.btn-atm{
+    background-color: #01696E;
+    color: white;
+    font-weight: bold;
+}
+.btn-map{
+    font-size: 20px;
+}
+.body{
+    /*position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    transform: translate(-50%, -50%);*/
+    margin: 50px auto;
+    width: 80%;
+    text-align: center;
+}
+.title-header{
+    font-size: 56px;
+}
+.body-content{
+    font-size: 25px;
+    color: grey;
+}
+.body-container{
+    height: 500px;
+    position: relative;
+}
+@media all and (max-width: 1000px) {
+    .body-container-m{
+        margin-top: 80px;
+    }
+}

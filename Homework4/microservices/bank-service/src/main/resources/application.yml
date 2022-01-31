@@ -1,0 +1,28 @@
+server:
+  port: 8083
+
+spring:
+  application:
+    name: bank-service
+  datasource:
+    url: jdbc:postgresql://localhost:5455/bankdb
+    username: admin
+    password: atm123
+    hikari:
+      connection-timeout: 20000
+      maximum-pool-size: 5
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQL95Dialect
+        jdbc:
+          lob:
+            non_contextual_creation: true
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  flyway:
+    url: jdbc:postgresql://localhost:5455/bankdb
+    user: admin
+    password: atm123
+    locations: classpath:db/migration

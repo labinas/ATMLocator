@@ -1,11 +1,13 @@
 package dians.atmlocator.web.controller;
 
-import dians.atmlocator.model.*;
+import dians.atmlocator.model.ApplicationUser;
+import dians.atmlocator.model.Atm;
+import dians.atmlocator.model.BankInfo;
+import dians.atmlocator.model.Review;
 import dians.atmlocator.service.ApplicationUserService;
 import dians.atmlocator.service.AtmService;
 import dians.atmlocator.service.BankInfoService;
 import dians.atmlocator.service.ReviewService;
-import lombok.Getter;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -13,10 +15,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
 
 @Controller
 @RequestMapping("/atm")

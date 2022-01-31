@@ -1,0 +1,67 @@
+.btn-atm{
+    background-color: #01696E;
+    color: white;
+    font-weight: bold;
+}
+.drop-d{
+    border: 1px solid #ced4da;
+    width: 99%;
+}
+
+.body-container{
+    height: 100vh;
+    position: relative;
+}
+.body{
+    margin: 20px auto;
+    width: 80%;
+    text-align: center;
+}
+@media all and (max-width: 1000px) {
+    .body-container-m{
+        margin-top: 50px;
+    }
+    .drop-d{
+        font-size: 14px;
+        padding: 7.7px;
+    }
+    .atmEntry{
+        font-size: 10px;
+    }
+    thead{
+        font-size: 22px;
+    }
+}
+
+#basic-addon{
+    padding: 0.65rem 0.75rem;
+}
+.atm-list{
+    width: 70%;
+    margin: 0 auto;
+    height: 250px;
+    overflow-y: auto;
+    margin-bottom: 50px;
+}
+
+#atm-table{
+    margin: 0 auto;
+    width: 100%;
+}
+.atmEntry{
+    border-bottom: 1px solid ghostwhite;
+}
+thead{
+    font-weight: 700;
+    font-size: 25px;
+    border-bottom: 3px solid #01696E;
+}
+.fa-star{
+    color: #F1D90D;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+
+.atmEntryName, .atmEntryName:hover, .atmEntryAddr, .atmEntryAddr:hover{
+    color: #353535;
+    text-decoration: none;
+}
