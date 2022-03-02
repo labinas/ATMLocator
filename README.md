@@ -10,8 +10,8 @@ ATMLocator е едноставна, функционална и корисна �
 ```docker-compose -f .\docker-compose.yml up -d```
 
 ## Изглед на апликацијата 
-![alt text](https://ibb.co/ZzNQbCz)
-![alt text](https://ibb.co/QKQ4Q5S)
+![alt text](https://i.ibb.co/N270Gz2/atmhome.png)
+![alt text](https://i.ibb.co/CH8f8rC/atmlist.png)
 ![alt text](https://i.ibb.co/k6Yn2Nt/atmmap.png)
 
 ## Линк
