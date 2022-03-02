@@ -12,7 +12,7 @@ ATMLocator е едноставна, функционална и корисна �
 ## Изглед на апликацијата 
 ![alt text](https://ibb.co/ZzNQbCz)
 ![alt text](https://ibb.co/QKQ4Q5S)
-![alt text](https://ibb.co/CsxdKRf)
+![alt text](https://i.ibb.co/k6Yn2Nt/atmmap.png)
 
 ## Линк
 https://atmlocator.herokuapp.com/
